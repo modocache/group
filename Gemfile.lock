@@ -183,6 +183,9 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    with_model (0.3.1)
+      activerecord (>= 2.3.5, < 4.0.0)
+      rspec (~> 2.11)
     yajl-ruby (1.1.0)
 
 PLATFORMS
@@ -212,4 +215,5 @@ DEPENDENCIES
   sqlite3
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  with_model
   yajl-ruby

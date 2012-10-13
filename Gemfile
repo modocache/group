@@ -26,6 +26,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'spork'
+  gem 'with_model'
 end
 
 

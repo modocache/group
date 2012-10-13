@@ -88,4 +88,5 @@ RSpec.configure do |config|
   config.include DeviseRequestSupport, :type => :request
   config.include DeviseControllerSupport, :type => :controller
   config.include CanCanSupport
+  config.extend WithModel
 end

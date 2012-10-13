@@ -62,6 +62,9 @@ module Group
     config.generators do |generator|
       generator.template_engine :haml
     end
+
+    # Include lib directory
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
 
