@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include HasUuid
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -10,8 +12,6 @@ class User < ActiveRecord::Base
   has_many :posts
 
   validates :email, presence: true, uniqueness: true
-  validates :uuid, presence: true, uniqueness: true
-  before_validation :set_uuid, on: :create
 
   def self.find_or_create_by_auth_hash(auth_hash)
     begin
@@ -27,9 +27,4 @@ class User < ActiveRecord::Base
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=24"
   end
-
-  private
-    def set_uuid
-      self.uuid = SecureRandom.uuid if self.uuid.blank?
-    end
 end
