@@ -4,7 +4,14 @@ require 'spec_helper'
 describe 'api/v1/posts/show.rabl' do
   before do
     @now = Time.zone.now
+    @user_mock = stub_model(User, {
+      'uuid' => 'well-dressed-pickles',
+      'email' => 'lady-rainicorn@the-land-of.ooo',
+      'created_at' => @now,
+      'updated_at' => @now
+    })
     @post_mock = double('post mock', {
+      'user' => @user_mock,
       'uuid' => 'tree-trunks',
       'title' => 'Rhombus!',
       'body' => 'Slamacow! That was tops!',
@@ -23,7 +30,13 @@ describe 'api/v1/posts/show.rabl' do
       'body' => @post_mock.body,
       'created_at' => @now.as_json,
       'updated_at' => @now.as_json,
-      'permissions' => { 'update' => false, 'destroy' => false }
+      'permissions' => { 'update' => false, 'destroy' => false },
+      'user' => {
+        'id' => @user_mock.uuid,
+        'email' => @user_mock.email,
+        'created_at' => @now.as_json,
+        'updated_at' => @now.as_json
+      }
     }
   end
 
